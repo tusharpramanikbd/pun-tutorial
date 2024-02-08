@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 namespace Com.TusharPramanikBD.MyGame
 {
-    public class PlayerAnimatorManager : MonoBehaviour
+    public class PlayerAnimatorManager : MonoBehaviourPun
     {
         #region Private Fields
 
@@ -26,6 +27,11 @@ namespace Com.TusharPramanikBD.MyGame
 
         void Update()
         {
+            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
+
             if (!animator)
             {
                 return;
@@ -33,7 +39,7 @@ namespace Com.TusharPramanikBD.MyGame
 
             // deal with Jumping
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            
+
             // only allow jumping if we are running.
             if (stateInfo.IsName("Base Layer.Run"))
             {

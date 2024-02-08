@@ -11,6 +11,20 @@ namespace Com.TusharPramanikBD.MyGame
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        #region Public Fields
+
+        public static GameManager Instance;
+
+        #endregion
+
+        #region MonoBehaviour CallBacks
+
+        void Start()
+        {
+            Instance = this;
+        }
+        
+        #endregion
 
         #region Photon Callbacks
 
